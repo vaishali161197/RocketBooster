@@ -7,6 +7,14 @@ using UnityEngine.SceneManagement;
 public class RocketCollision : MonoBehaviour
 {
     [SerializeField] float LevelLoadDelay = 1f;
+    [SerializeField] AudioClip Crash;
+    [SerializeField] AudioClip Success;
+    AudioSource audiosoure;
+
+    private void Start()
+    {
+        audiosoure = GetComponent<AudioSource>();
+    }
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
@@ -45,12 +53,14 @@ public class RocketCollision : MonoBehaviour
     private void StartCrashSequence()
 
     {
+        audiosoure.PlayOneShot(Crash);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", LevelLoadDelay);
     }
 
     private void StartSuccessSequence()
     {
+        audiosoure.PlayOneShot(Success);
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", LevelLoadDelay);
     }
