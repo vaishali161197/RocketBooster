@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class RocketCollision : MonoBehaviour
 {
+    [SerializeField] float LevelLoadDelay = 1f;
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
@@ -15,15 +16,11 @@ public class RocketCollision : MonoBehaviour
                 break;
 
             case "Finish":
-                LoadNextLevel();
-                break;
-
-            case "Fuel":
-                Debug.Log(" You picked a fuel ");
+                StartSuccessSequence();
                 break;
 
             default:
-                ReloadLevel();
+                StartCrashSequence();
                 break;
         }
 
@@ -44,5 +41,17 @@ public class RocketCollision : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+    private void StartCrashSequence()
+
+    {
+        GetComponent<Movement>().enabled = false;
+        Invoke("ReloadLevel", LevelLoadDelay);
+    }
+
+    private void StartSuccessSequence()
+    {
+        GetComponent<Movement>().enabled = false;
+        Invoke("LoadNextLevel", LevelLoadDelay);
     }
 }
