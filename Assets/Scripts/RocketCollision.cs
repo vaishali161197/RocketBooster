@@ -9,14 +9,32 @@ public class RocketCollision : MonoBehaviour
     [SerializeField] float LevelLoadDelay = 1f;
     [SerializeField] AudioClip Crash;
     [SerializeField] AudioClip Success;
+    [SerializeField] ParticleSystem crashParticle;
+    [SerializeField] ParticleSystem successParticle;
     AudioSource audiosoure;
-
+    bool isCollided = false;
+    bool collisionDisabled = false;
     private void Start()
     {
         audiosoure = GetComponent<AudioSource>();
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        else if(Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisabled = !collisionDisabled;
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
+        if(isCollided || collisionDisabled)
+        {
+            return;
+        }
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -53,14 +71,20 @@ public class RocketCollision : MonoBehaviour
     private void StartCrashSequence()
 
     {
+        isCollided = true;
+        audiosoure.Stop();
         audiosoure.PlayOneShot(Crash);
+        crashParticle.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", LevelLoadDelay);
     }
 
     private void StartSuccessSequence()
     {
+        isCollided = true;
+        audiosoure.Stop();
         audiosoure.PlayOneShot(Success);
+        successParticle.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", LevelLoadDelay);
     }
