@@ -842,7 +842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVector: {x: 0, y: 0, z: 8}
   MovementFactor: 0
-  period: 2
+  period: 4
 --- !u!1001 &851145589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -996,7 +996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905235637}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.8, z: 13.95}
+  m_LocalPosition: {x: 0, y: 1.8, z: 13.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2379,17 +2379,17 @@ PrefabInstance:
     - target: {fileID: 5101986936172657827, guid: fc84ec62e7ca79e47b6a8dc06e089173,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: 5101986936172657827, guid: fc84ec62e7ca79e47b6a8dc06e089173,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.4
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 5101986936172657827, guid: fc84ec62e7ca79e47b6a8dc06e089173,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.6
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 5101986936172657827, guid: fc84ec62e7ca79e47b6a8dc06e089173,
         type: 3}
@@ -2802,6 +2802,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1333364058, guid: 2b4831289cbdab54ea63209117c93586, type: 3}
+      propertyPath: RocketSpeed
+      value: 800
+      objectReference: {fileID: 0}
     - target: {fileID: 6965309249574166900, guid: 2b4831289cbdab54ea63209117c93586,
         type: 3}
       propertyPath: m_Name
